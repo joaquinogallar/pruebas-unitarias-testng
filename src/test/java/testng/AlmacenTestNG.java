@@ -49,6 +49,9 @@ public class AlmacenTestNG {
 
     @BeforeMethod
     public void setUp() {
+        List<Ingrediente> ingredientes = List.of(
+                new Ingrediente("harina", "kg",  (int) (Math.random() * 100))
+        );
     }
 
     /**
@@ -68,7 +71,7 @@ public class AlmacenTestNG {
     }
 
 
-    @Test(dataProvider = "generarIngredientes")
+    @Test(dataProvider = "generarIngredientes", invocationCount = 2)
     public void testQuitarStock(Ingrediente i) {
         int cantidadInicial = i.getStock();
         int cantidadADecrementar = (int)(Math.random()*cantidadInicial);
